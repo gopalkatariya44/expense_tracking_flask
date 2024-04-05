@@ -1,0 +1,24 @@
+# Bytecode
+*.pyc
+__pycache__/
+
+# Secret files
+.env
+.flaskenv
+secret_key.py
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Deployment
+dist/
+build/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+
+venv
