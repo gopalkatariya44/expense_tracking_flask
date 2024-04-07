@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Add Expense{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 custom-card">
+    <div class="card">
+        <div class="card-header">
+            Add Expense
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Date</label>
+                        <input type="date" class="form-control" name="date" id="dateInput" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Time</label>
+                        <input type="time" class="form-control" name="time" id="timeInput" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Remark</label>
+                    <input type="text" class="form-control" name="remark" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Price</label>
+                        <input type="number" class="form-control" name="price" min="1" step="0.01" max="100000000" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Quantity</label>
+                        <input type="number" class="form-control" name="quantity" min="1" value="1" required>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+<script>
+  // Get current date and time
+  var now = new Date();
+
+  // Format date as YYYY-MM-DD for input type="date"
+  var year = now.getFullYear();
+  var month = (now.getMonth() + 1).toString().padStart(2, '0');
+  var day = now.getDate().toString().padStart(2, '0');
+  var formattedDate = `${year}-${month}-${day}`;
+
+  // Set value of date input field
+  document.getElementById("dateInput").value = formattedDate;
+
+  // Format time as HH:MM for input type="time"
+  var hours = now.getHours().toString().padStart(2, '0');
+  var minutes = now.getMinutes().toString().padStart(2, '0');
+  var formattedTime = `${hours}:${minutes}`;
+
+  // Set value of time input field
+  document.getElementById("timeInput").value = formattedTime;
+</script>
+{% endblock %}

@@ -1,13 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div style="width: max-content; height: max-content; align-items: center;">
-        <h1>Hello Expense</h1>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Expense{% endblock %}
+{% block head %}
+{{ super() }}
+  <style>
+    .btn-group {
+      visibility: hidden;
+    }
+
+    tr:hover .btn-group {
+      visibility: visible;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+    {% include 'expense/expense_list.html' %}
+{% endblock %}

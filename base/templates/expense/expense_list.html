@@ -1,0 +1,38 @@
+<div class="container">
+    <br>
+    <div class="text-right">
+        <button onclick="window.location.href='/add-expense'" type="button" class="btn btn-success">Add Expense</button>
+    </div>
+    <table class="table">
+      <thead class="table-light">
+        <tr>
+          <th scope="col">Date & Time</th>
+          <th scope="col">Remark</th>
+          <th scope="col">Amount</th>
+{#          <th scope="col">Handle</th>#}
+        </tr>
+      </thead>
+      <tbody>
+      {% for expense in expenses %}
+        <tr>
+          <td>{{ expense.local_created_at }}</td>
+          <td>{{ expense.remark }}</td>
+          <td>{{ expense.price*expense.quantity }}</td>
+          <td>
+              <div class="btn-group">
+                  <button onclick="window.location.href='update-expense/{{expense.id}}'"
+                          type="button" class="btn btn-success">Edit</button>&nbsp;
+                  <button onclick="window.location.href='delete-expense/{{expense.id}}'"
+                          type="button" class="btn btn-danger">Delete</button>
+              </div>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {% if expenses|length == 0 %}
+        <div class="text-center">
+            <p class="card-text">No todos found! Add some.</p>
+        </div>
+    {% endif %}
+</div>
