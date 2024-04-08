@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Expense Details{% endblock %}
+{% block content %}
+{% include 'navbar.html' %}
+<br>
+<br>
+<br>
+<br>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    Expense Details
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ expense.remark }}</h5>
+                    <p class="card-text">Price: {{ expense.price * expense.quantity }}</p>
+                    <p class="card-text">Created At: {{ expense.created_at|utc_to_local_date }} {{ expense.created_at|utc_to_local_time }}</p>
+                    <p class="card-text">Updated At: {{ expense.updated_at|utc_to_local_date }} {{ expense.updated_at|utc_to_local_time }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

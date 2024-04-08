@@ -39,7 +39,8 @@ class ExpenseDAO:
             func.date_format(func.convert_tz(Expense.created_at, '+00:00', '+05:30'), "%d %b, %Y %I:%i %p").label(
                 'local_created_at')
         ).filter_by(user_id=user_id).order_by(Expense.created_at.desc()).all()
-        return expense_list
+        total = round(db.session.query(func.sum(Expense.quantity * Expense.price)).scalar(), 2)
+        return expense_list, total
 
     @staticmethod
     def local_to_utc(date, time):

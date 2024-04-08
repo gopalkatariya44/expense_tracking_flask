@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import Integer, String, Float, ForeignKey
+from sqlalchemy import Integer, String, Float, ForeignKey, event
 
 from base import db
 from base.features.user.user_vo import User
@@ -9,7 +9,7 @@ from base.features.user.user_vo import User
 
 class Expense(db.Model):
     __tablename__ = 'expense'
-    id = db.Column('id', String(36), primary_key=True, default=str(uuid.uuid4()))
+    id = db.Column('id', String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
     remark = db.Column('remark', String(255), nullable=False)
     quantity = db.Column('quantity', Integer, nullable=False)
     price = db.Column('price', Float, nullable=False)

@@ -3,10 +3,22 @@
 {% block head %}
 {{ super() }}
 {% endblock %}
+<style>
+        .centered-container {
+      height: 100vh; /* Full height of the viewport */
+      display: flex;
+      align-items: center; /* Vertical centering */
+    }
+</style>
 {% block content %}
+{% include 'navbar.html' %}
+<br>
+<br>
+<br>
+<br>
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-6 custom-card">
+    <div class="row justify-content-center">
+    <div class="col-md-5">
     <div class="card">
         <div class="card-header">
             Add Expense
