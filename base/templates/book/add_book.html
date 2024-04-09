@@ -1,0 +1,41 @@
+{% extends "core/base.html" %}
+{% block title %}Add Expense{% endblock %}
+{% block head %}
+{{ super() }}
+{% endblock %}
+<style>
+    .centered-container {
+      height: 100vh; /* Full height of the viewport */
+      display: flex;
+      align-items: center; /* Vertical centering */
+    }
+</style>
+{% block content %}
+{% include 'core/navbar.html' %}
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-5">
+    <div class="card">
+        <div class="card-header">
+            Add Expense
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" required>
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

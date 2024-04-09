@@ -1,8 +1,14 @@
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 {% block title %}Expense{% endblock %}
 {% block head %}
 {{ super() }}
   <style>
+    li:hover .btn-group {
+        visibility: visible;
+    }
+    li:hover {
+        background-color: #f0f0f0;
+    }
     .btn-group {
       visibility: hidden;
     }
@@ -30,12 +36,13 @@
   </style>
 {% endblock %}
 {% block content %}
-    {% include 'navbar.html' %}
-    <div class="container-fluid">
-      <div class="row">
-          {% include 'sidebar.html' %}
-          {% include 'expense/expense_list.html' %}
-      </div>
-    </div>
+    {% include 'core/navbar.html' %}
+    {% include 'book/book_list.html' %}
+{#    <div class="container-fluid">#}
+{#      <div class="row">#}
+{#          {% include 'sidebar.html' %}#}
+{#          {% include 'expense/expense_list.html' %}#}
+{#      </div>#}
+{#    </div>#}
 
 {% endblock %}

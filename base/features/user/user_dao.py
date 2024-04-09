@@ -29,7 +29,7 @@ class UserDAO:
         """
         try:
             payload = {
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1, seconds=5),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=30, seconds=0),
                 'iat': datetime.datetime.utcnow(),
                 'sub': user_id
             }

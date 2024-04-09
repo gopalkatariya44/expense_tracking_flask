@@ -1,7 +1,7 @@
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 {% block title %}Expense Details{% endblock %}
 {% block content %}
-{% include 'navbar.html' %}
+{% include 'core/navbar.html' %}
 <br>
 <br>
 <br>
@@ -20,6 +20,11 @@
                     <p class="card-text">Updated At: {{ expense.updated_at|utc_to_local_date }} {{ expense.updated_at|utc_to_local_time }}</p>
                 </div>
             </div>
+            <br>
+            <button onclick="window.location.href='/update-expense/{{ book_id }}/{{expense.id}}'"
+                    type="button" class="btn btn-success">Update Expense</button>
+            <button onclick="window.location.href='/delete-expense/{{ book_id }}/{{expense.id}}'"
+                    type="button" class="btn btn-danger">Delete Expense</button>
         </div>
     </div>
 </div>

@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 # app.secret_key = 'qazwsxedcrfvtgbyhnujmiklop123456'
 app.config['SECRET_KEY'] = settings.JWT_SECRET_KEY
-app.config['SQLALCHEMY_ECHO'] = True
+app.config['SQLALCHEMY_ECHO'] = False
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
 app.config['SQLALCHEMY_DATABASE_URI'] = settings.SQLALCHEMY_DATABASE_URI + settings.DATABASE_NAME
 app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0

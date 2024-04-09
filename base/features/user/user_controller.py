@@ -40,9 +40,9 @@ def user_login():
         # Store tokens in session
         session['access_token'] = access_token
 
-        return redirect(url_for("expense_list"))
+        return redirect(url_for("book_list"))
     if session.get('access_token', None):
-        return redirect(url_for("expense_list"))
+        return redirect(url_for("book_list"))
     return render_template("user/login.html")
 
 

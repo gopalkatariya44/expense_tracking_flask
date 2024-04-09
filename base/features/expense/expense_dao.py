@@ -30,7 +30,7 @@ class ExpenseDAO:
         db.session.commit()
 
     @staticmethod
-    def expense_list(user_id):
+    def expense_list(user_id, book_id):
         expense_list = db.session.query(
             Expense.id,
             Expense.remark,
@@ -38,13 +38,18 @@ class ExpenseDAO:
             Expense.price,
             func.date_format(func.convert_tz(Expense.created_at, '+00:00', '+05:30'), "%d %b, %Y %I:%i %p").label(
                 'local_created_at')
-        ).filter_by(user_id=user_id).order_by(Expense.created_at.desc()).all()
-        total = round(db.session.query(func.sum(Expense.quantity * Expense.price)).scalar(), 2)
+        ).filter_by(user_id=user_id, book_id=book_id).order_by(Expense.created_at.desc()).all()
+
+        total = db.session.query(func.sum(Expense.quantity * Expense.price)) \
+            .filter(Expense.book_id == book_id) \
+            .scalar()
+
+        total = round(total, 2) if total else 0
         return expense_list, total
 
     @staticmethod
     def local_to_utc(date, time):
-        local_datetime = datetime.strptime(date+" "+time, "%Y-%m-%d %H:%M")
+        local_datetime = datetime.strptime(date + " " + time, "%Y-%m-%d %H:%M")
         local_tz = pytz.timezone('Asia/Kolkata')
         localized_datetime = local_tz.localize(local_datetime)
         utc_datetime = localized_datetime.astimezone(pytz.utc)

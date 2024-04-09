@@ -1,0 +1,48 @@
+<br>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+                <div class="container">
+                <div class="text-right">
+                    <button onclick="window.location.href='/add-book'"
+                            type="button" class="btn btn-success">Add Book</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <br>
+                <div class="container">
+                      <ul class="list-group">
+                          {% for book in books %}
+                            <li class="list-group-item" onclick="window.location.href='expenses/{{ book.id }}'">
+                              <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                  <i class="fas fa-book mr-2"></i> <!-- Icon -->
+                                  <span class="font-weight-bold">{{ book.name }}</span> <!-- Title -->
+                                  <small class="d-block pl-2">{{ book.local_updated_at|utc_to_str }}</small> <!-- Subtitle -->
+                                </div>
+{#                                <span class="badge badge-primary badge-pill">{{ book.total_expense }}</span> <!-- Sum -->#}
+                                  <div class="row align-content-center">
+
+                                    <h5 class="col align-content-center">{{ book.total_expense|float_to_int }}</h5>
+                                    <div class="btn-group pl-1">
+                                          <button onclick="window.location.href='/update-book/{{ book.id }}'; event.stopPropagation();" class="btn">
+                                              <i class="material-icons" style="font-size:28px;color:#3e3ed5">edit</i>
+                                          </button>
+                                          <button onclick="window.location.href='/delete-book/{{ book.id }}'; event.stopPropagation();" class="btn">
+                                              <i class="material-icons" style="font-size:28px;color:#d33a3a">delete</i>
+                                          </button>
+                                      </div>
+                                  </div>
+                              </div>
+                            </li>
+                            <br>
+                          {% endfor %}
+                      </ul>
+                </div>
+                {% if books|length == 0 %}
+                    <div class="text-center">
+                        <p class="card-text">No Book found! Add Some.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
