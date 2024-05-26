@@ -2,76 +2,78 @@
 {% block title %}Expense{% endblock %}
 {% block head %}
 {{ super() }}
-    <style>
-    .btn-group {
-      visibility: hidden;
-    }
+<style>
+  .btn-group {
+    visibility: hidden;
+  }
 
-    tr:hover .btn-group {
-        visibility: visible;
-    }
-    tr:hover {
-        background-color: #f0f0f0;
-    }
-  </style>
+  tr:hover .btn-group {
+    visibility: visible;
+  }
+
+  tr:hover {
+    background-color: #f0f0f0;
+  }
+</style>
 {% endblock %}
 {% block content %}
-    {% include 'core/navbar.html' %}
+{% include 'core/navbar.html' %}
+<br>
+<br>
+<br>
+<br>
+<div class="col item-list">
+  <div class="container">
+    <div class="text-right">
+      <button onclick="window.location.href='/add-expense/{{ book_id }}'" type="button" class="btn btn-success">Add
+        Expense</button>
+    </div>
     <br>
+    <div class="card">
+      <div class="card-body">
+        Expense Total = <h1>{{ total|float_to_int }}</h1>
+      </div>
+    </div>
     <br>
-    <br>
-    <br>
-    <div class="col item-list">
-        <div class="container">
-        <div class="text-right">
-            <button onclick="window.location.href='/add-expense/{{ book_id }}'"
-                    type="button" class="btn btn-success">Add Expense</button>
-        </div>
-        <br>
-        <div class="card">
-          <div class="card-body">
-             Expense Total  = <h1>{{ total|float_to_int }}</h1>
-          </div>
-        </div>
-        <br>
-        <table class="table">
-          <thead class="thead-light">
-            <tr class="d-flex">
-              <th class="col-3" scope="col">Date & Time</th>
-              <th class="col-4" scope="col">Remark</th>
-              <th class="col-2" scope="col">Amount</th>
-              <th class="col-1" scope="col">Mode</th>
-              <th class="col-2" scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-          {% for expense in expenses %}
-            <tr class="d-flex" onclick="window.location.href='/expense-details/{{ book_id }}/{{expense.id}}'">
-              <td class="col-3 pt-4">{{ expense.local_created_at }}</td>
-              <td class="col-4 pt-4">{{ expense.remark }}</td>
-              <td class="col-2 pt-4"><b style="font-weight: 550">{{ (expense.price*expense.quantity)|float_to_int }}</b></td>
-              <td class="col-1 pt-4">Cash</td>
-              <td class="col-2 pt-3">
-                  <div class="btn-group">
-                      <button onclick="window.location.href='/update-expense/{{ book_id }}/{{expense.id}}';
+    <table class="table">
+      <thead class="thead-light">
+        <tr class="d-flex">
+          <th class="col-3" scope="col">Date & Time</th>
+          <th class="col-4" scope="col">Remark</th>
+          <th class="col-2" scope="col">Amount</th>
+          <th class="col-1" scope="col">Mode</th>
+          <th class="col-2" scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for expense in expenses %}
+        <tr class="d-flex" onclick="window.location.href='/expense-details/{{ book_id }}/{{expense.id}}'">
+          <td class="col-3 pt-4">{{ expense.local_created_at }}</td>
+          <td class="col-4 pt-4">{{ expense.remark }}</td>
+          <td class="col-2 pt-4"><b style="font-weight: 550">{{ (expense.price*expense.quantity)|float_to_int }}</b>
+          </td>
+          <td class="col-1 pt-4">Cash</td>
+          <td class="col-2 pt-3">
+            <div class="btn-group">
+              <button onclick="window.location.href='/update-expense/{{ book_id }}/{{expense.id}}';
                               event.stopPropagation();" class="btn">
-                            <i class="material-icons" style="font-size:28px;color:#3e3ed5">edit</i>
-                      </button>
-                      <button onclick="window.location.href='/delete-expense/{{ book_id }}/{{expense.id}}';
+                <i class="material-icons" style="font-size:28px;color:#3e3ed5">edit</i>
+              </button>
+              <button onclick="window.location.href='/delete-expense/{{ book_id }}/{{expense.id}}';
                             event.stopPropagation();" class="btn">
-                            <i class="material-icons" style="font-size:28px;color:#d33a3a">delete</i>
-                      </button>
-                  </div>
-              </td>
-            </tr>
-          {% endfor %}
-          </tbody>
-        </table>
-        {% if expenses|length == 0 %}
-            <div class="text-center">
-                <p class="card-text">No todos found! Add some.</p>
+                <i class="material-icons" style="font-size:28px;color:#d33a3a">delete</i>
+              </button>
             </div>
-        {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% if expenses|length == 0 %}
+    <div class="text-center">
+      <p class="card-text">No Books found! Add some.</p>
     </div>
-    </div>
+    {% endif %}
+  </div>
+</div>
 {% endblock %}

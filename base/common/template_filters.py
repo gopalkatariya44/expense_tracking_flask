@@ -25,7 +25,7 @@ def utc_to_local_time(value):
 
 @app.template_filter('float_to_int')
 def float_to_int(value):
-    if value.is_integer():
+    if value is int:
         return int(value)
     return value
 
