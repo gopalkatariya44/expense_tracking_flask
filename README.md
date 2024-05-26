@@ -95,8 +95,10 @@ To install and run this project locally, follow these steps:
    - Create a `.env` file in the root directory of your project and add the necessary configuration variables. Example:
 
      ```env
-     FLASK_APP=run.py
-     FLASK_ENV=development
+     PROJECT_NAME=Expense
+     JWT_SECRET_KEY=
+     SQLALCHEMY_DATABASE_URI=mysql+pymysql://username:password@localhost/
+     DATABASE_NAME=expense_tracking
      ```
 
 7. **Run the application:**
@@ -107,7 +109,7 @@ To install and run this project locally, follow these steps:
 
 ## Usage
 
-Once the application is running, you can access it by navigating to `http://127.0.0.1:5001` in your web browser.
+Once the application is running, you can access it by navigating to [http://127.0.0.1:5001](http://127.0.0.1:5001) in your web browser.
 
 ### Main Features:
 
